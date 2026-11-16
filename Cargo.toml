@@ -11,7 +11,8 @@ rune = { path = "vendor/rune/crates/rune", default-features = false, features = 
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
 
 # Rune needs its patched copies of these crates (see the rune repo's `[patch.crates-io]`); a
-# downstream app that builds Rune patches them too. The paths live inside the submodule.
+# downstream app that builds Rune patches them too. The paths live inside the submodule. The two
+# accesskit patches are unused while `accessibility` stays off, which is why cargo mentions them.
 [patch.crates-io]
 wgpu-hal = { path = "vendor/rune/vendor/wgpu-hal" }
 winit = { path = "vendor/rune/vendor/winit" }

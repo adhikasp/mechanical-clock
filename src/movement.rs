@@ -297,6 +297,7 @@ impl Train {
     }
 
     /// The arbor with this name, in the going train or the motion work.
+    #[cfg(test)]
     pub fn arbor(&self, name: &str) -> &Arbor {
         self.arbors
             .iter()
