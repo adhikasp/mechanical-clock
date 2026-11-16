@@ -1,0 +1,27 @@
+[package]
+name = "mechanical-clock"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "A wall clock whose hands are driven by a simulated gear train and lever escapement, drawn in Rune"
+
+[dependencies]
+# Rune is pre-release: pinned by the submodule at vendor/rune (see README "Build").
+rune = { path = "vendor/rune/crates/rune", default-features = false, features = ["embedded-fonts", "tooling"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+
+# Rune needs its patched copies of these crates (see the rune repo's `[patch.crates-io]`); a
+# downstream app that builds Rune patches them too. The paths live inside the submodule.
+[patch.crates-io]
+wgpu-hal = { path = "vendor/rune/vendor/wgpu-hal" }
+winit = { path = "vendor/rune/vendor/winit" }
+parley_engine = { path = "vendor/rune/vendor/parley_engine" }
+accesskit_windows = { path = "vendor/rune/vendor/accesskit_windows" }
+accesskit_macos = { path = "vendor/rune/vendor/accesskit_macos" }
+
+# Rune's own advice: full debug info on this dependency tree costs tens of GB of RAM to link.
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.release]
+debug = "line-tables-only"
